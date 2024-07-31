@@ -1,13 +1,40 @@
+import styled from 'styled-components'
+
+
+const Card = styled.div`
+    width: 100%;
+    max-width: 18rem;
+    height: 20rem;
+    border: 1px solid black;
+    text-align: center;
+    cursor: pointer;
+`
+
+const FlexMain = styled.main`
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+`
+
+
+
+function openModal() {
+  // Open the recepie sepcific modal here
+  
+}
+
 function App() {
 
   return (
       <>
       <header>
-        <input>Search query component here</input>
+      {/* Search bar and dark/light mode toggle here */}
       </header>
-      <main>
-        <div>Cards components are iterated through here</div>
-      </main>
+      <FlexMain>
+        {/* All reciepie cards are rendered here */}
+
+        <Card onClick={openModal}>Test</Card>
+      </FlexMain>
       </>
   )
 }
