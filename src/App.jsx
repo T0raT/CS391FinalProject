@@ -12,6 +12,7 @@ const FlexMain = styled.main`
 
 function App() {
   const recipes = [
+    //   Using a temp array of objects to simulate data from an API
     {
       id: 1,
       title: "Spaghetti Carbonara",
