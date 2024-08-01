@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 
 
 const Card = styled.div`
+    // Temp styling TODO: Add more styling
     display: flex;
     position: relative;
     flex-direction: column;
@@ -18,6 +19,7 @@ const Card = styled.div`
 `
 
 const ModalDiv = styled.div`
+    // Temp styling TODO: Add more styling
     display: ${(props) => props.modalStatus === "true" ? "block" : "none"};
     position: fixed;
     top: 50%;
@@ -30,10 +32,10 @@ const ModalDiv = styled.div`
     background-color: white;
     z-index: 1000;
     border: 1px solid black;
-    cursor: default;
     transition: all 1s;
 `
 const ModalBg = styled.div`
+    // Temp styling TODO: Add more styling
     display: ${(props) => props.modalStatus === "true" ? "block" : "none"};
     position: fixed;
     top: 0;
