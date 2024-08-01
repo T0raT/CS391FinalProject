@@ -1,14 +1,6 @@
 import styled from 'styled-components'
+import {ProductCard} from "./components/ProductCard.jsx";
 
-
-const Card = styled.div`
-    width: 100%;
-    max-width: 18rem;
-    height: 20rem;
-    border: 1px solid black;
-    text-align: center;
-    cursor: pointer;
-`
 
 const FlexMain = styled.main`
     display: flex;
@@ -18,10 +10,7 @@ const FlexMain = styled.main`
 
 
 
-function openModal() {
-  // Open the recepie sepcific modal here
-  
-}
+
 
 function App() {
 
@@ -32,8 +21,7 @@ function App() {
       </header>
       <FlexMain>
         {/* All reciepie cards are rendered here */}
-
-        <Card onClick={openModal}>Test</Card>
+        <ProductCard />
       </FlexMain>
       </>
   )
