@@ -14,6 +14,7 @@ const Card = styled.div`
     border: 1px solid black;
     cursor: pointer;
     z-index: 1;
+    transition: all 1s;
 `
 
 const ModalDiv = styled.div`
@@ -22,18 +23,27 @@ const ModalDiv = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
-    height: 50%;
+    width: 100%;
+    height: 100%;
+    max-width: 40rem;
+    max-height: 40rem;
     background-color: white;
     z-index: 1000;
     border: 1px solid black;
     cursor: default;
-    
+    transition: all 1s;
 `
 const ModalBg = styled.div`
-    width: 100svh;
-    height: 100svh;
-    
+    display: ${(props) => props.modalStatus === "true" ? "block" : "none"};
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    background-color: ${(props) => props.modalStatus === "true" ? "rgba(0, 0, 0, 0.5)" : "transparent"};
+    backdrop-filter: ${(props) => props.modalStatus === "true" ? "blur(5px)" : "none"};
+    transition: all 1s;
 `
 
 export const ProductCard = () => {
@@ -53,14 +63,16 @@ export const ProductCard = () => {
 
   return (
       <>
-        <Card onClick={openModal}>Test Card</Card>
+        <Card className="Product Card" onClick={openModal}>Test Card <p>{`>Click Me!<`}</p></Card>
+        <ModalDiv
+            className={ModalDiv}
+            modalStatus={modalStatus.toString()}
+        >
 
-        <ModalBg />
-
-        <ModalDiv modalStatus={modalStatus.toString()}>
           Modal Content Here
           <button onClick={closeModal}>Close</button>
         </ModalDiv>
+        <ModalBg className="ModalBg" modalStatus={modalStatus.toString()}/>
       </>
   )
 }

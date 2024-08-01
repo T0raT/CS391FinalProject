@@ -5,6 +5,7 @@ import {ProductCard} from "./components/ProductCard.jsx";
 const FlexMain = styled.main`
     display: flex;
     flex-wrap: wrap;
+//    Width and height to be decided later
 `
 
 
