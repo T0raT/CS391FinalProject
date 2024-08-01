@@ -48,8 +48,10 @@ const ModalBg = styled.div`
     transition: all 1s;
 `
 
-export const ProductCard = () => {
-
+export const ProductCard = (props) => {
+  const item = props.recipe;
+  const instructions = item.instructions;
+  const title = item.title;
   const [modalStatus, setModalStatus] = useState(false);
 
   const openModal = () => {
@@ -65,15 +67,19 @@ export const ProductCard = () => {
 
   return (
       <>
-        <Card className="Product Card" onClick={openModal}>Test Card <p>{`>Click Me!<`}</p></Card>
+        <Card className="Product Card" onClick={openModal}>
+          <h3>{title}</h3>
+        </Card>
+
         <ModalDiv
             className={ModalDiv}
             modalStatus={modalStatus.toString()}
         >
 
-          Modal Content Here
+          <p>{instructions}</p>
           <button onClick={closeModal}>Close</button>
         </ModalDiv>
+
         <ModalBg className="ModalBg" modalStatus={modalStatus.toString()}/>
       </>
   )
