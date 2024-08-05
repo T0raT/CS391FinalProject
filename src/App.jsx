@@ -1,12 +1,12 @@
-import { useState } from 'react'
+import SearchbarWrapper from "./components/SearchbarWrapper.jsx";
 
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
 
   return (
-
+      <div>
+        <h1>RECIPE FETCHER</h1>
+        <SearchbarWrapper/>
+      </div>
   )
 }
-
-export default App
