@@ -63,14 +63,18 @@ export const ProductCard = (props) => {
     console.log("Modal closed");
   };
 
+  // All prop variables
+  const title = props.title;
+  const nutrition = props.nutrition;
+
   return (
     <>
       <Card className="Product Card" onClick={openModal}>
-        <h3>{}</h3>
+        <h3>{title}</h3>
       </Card>
 
       <ModalDiv className={ModalDiv} modalStatus={modalStatus.toString()}>
-        <p>{}</p>
+        <p>{nutrition}</p>
         <button onClick={closeModal}>Close</button>
       </ModalDiv>
 

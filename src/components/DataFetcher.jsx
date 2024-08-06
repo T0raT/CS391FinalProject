@@ -23,7 +23,11 @@ export default function DataFetcher({ query }) {
   return (
     <div>
       {data.results.map((rec) => (
-        <ProductCard key={rec.id} />
+        <ProductCard
+          key={rec.id}
+          title={rec.title}
+          nutrition={rec.nutrition.nutrients[0].amount}
+        />
       ))}
     </div>
   );
