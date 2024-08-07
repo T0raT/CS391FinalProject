@@ -24,7 +24,9 @@ const FlexMain = styled.main`
 
 // to style the layout of the input field and buttons
 const MainContainer = styled.div`
-  background: rgb(0, 146, 66);
+  //background: rgb(0, 146, 66);
+  background: linear-gradient(to bottom, #1e9324, #049f0a);
+  box-shadow: 0 4px 8px rgba(0, 145, 65, 0.41);
 
   border: 2px solid #050505;
   padding: 1em;
@@ -105,6 +107,7 @@ const Button = styled.button`
 
 const Label = styled.label`
   color: white;
+  font-weight: bold;
   margin-bottom: 0.5rem;
   font-size: calc(10px + 1vmin);
 `;
@@ -113,7 +116,7 @@ const Select = styled.select`
   width: 100%;
   padding: 0.2rem;
   border-radius: 5px;
-  border: 1px solid #020202;
+  border: 2px solid #020202;
   font-size: calc(10px + 1vmin);
 `;
 
@@ -121,7 +124,7 @@ const Input = styled.input`
   width: 100%;
   padding: 0.2rem;
   border-radius: 5px;
-  border: 1px solid #020202;
+  border: 2px solid #020202;
   font-size: calc(10px + 1vmin);
 `;
 
