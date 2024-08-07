@@ -8,26 +8,18 @@ export const DarkThemeContext = createContext();
 
 const Button = styled.button`
     max-width: 10em;
-    padding: 1rem;
+    padding: 2%;
     border-radius: 20px;
     border: 2px solid ${(props) => (props.dark ? "rgb(0, 146, 66)" : "black")};
     cursor: pointer;
     font-size: calc(5px + 1vmin);
-    display: flex;
-    justify-items: right;
  `;
 
 const HeaderContainer = styled.div`
     background-color: ${(props) => (props.dark ? "#1c2029" : "white")};
     color: ${(props) => (props.dark ? "white" : "#1c2029")};
     padding: 1% 2%;
-    display: flex;
-    margin: auto;
-    
-    .toggle{
-        justify-content: flex-start;
-    }
-    
+    text-align: center;    
 `;
 
 const StyledHeader = styled.header`
