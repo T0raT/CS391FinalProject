@@ -24,6 +24,7 @@ export default function DataFetcher({ query }) {
   return data.results.map((rec) => (
     <ProductCard
       key={rec.id}
+      id={rec.id}
       title={rec.title}
       nutrients={rec?.nutrition?.nutrients}
       summary={rec?.summary}
@@ -32,7 +33,7 @@ export default function DataFetcher({ query }) {
       cuisines={rec?.cuisines}
       diets={rec?.diets}
       instructions={rec.analyzedInstructions[0].steps}
-      ingredients ={rec?.nutrition?.ingredients}
+      ingredients={rec?.nutrition?.ingredients}
     />
   ));
 }
