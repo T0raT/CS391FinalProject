@@ -14,7 +14,10 @@ import { ProductCard } from "./ProductCard.jsx";
 const FlexMain = styled.main`
   display: flex;
   flex-wrap: wrap;
-  //    Width and height to be decided later
+  justify-content: center;
+  gap: 2rem;
+  height: auto;
+  width: 100%;
 `;
 
 // to style the layout of the input field and buttons
@@ -124,12 +127,12 @@ export default function SearchbarWrapper() {
   // local function to handle what happens when the search button is clicked. Essentially input fields are passed on to DataFetcher to
   //const SearchParameters = () => {}
   const Search = () => {
-    const APIcallstring = QueryBuilder(
+    const APIcallstring = QueryBuilder({
       searchValue,
       maxCalories,
       mealType,
       dietType,
-    );
+    });
     setQuery(APIcallstring);
   };
 

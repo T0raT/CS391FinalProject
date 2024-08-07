@@ -4,18 +4,18 @@
 // Section to Store the different parts needed to make Spoonacular API calls that don't change with each request.
 // for now these values are hardcoded but realistically should be hidden with sensitive info shared publicly.
 
-export default function QueryBuilder(
+export default function QueryBuilder({
   searchValue,
   maxCalories,
   mealType,
   dietType,
-) {
+}) {
   // (tiger): using vite dotenv to hide api key
   const apiKey = import.meta.env.VITE_API_KEY; // the authentication key needed to make a fetch request.
-  console.log("DONT DO THIS", apiKey);
+
   const APIurl = `https://api.spoonacular.com/recipes/complexSearch`; // the basic url setup for all calls to the API
 
-  const number = "1"; // parameter for determining a cap on the number of results. will set low for now to avoid consuming free points too fast.
+  const number = "10"; // parameter for determining a cap on the number of results. will set low for now to avoid consuming free points too fast.
 
   const instructionsRequired = "true"; // needed to only include recipes with instructions
 

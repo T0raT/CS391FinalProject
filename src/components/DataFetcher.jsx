@@ -20,15 +20,14 @@ export default function DataFetcher({ query }) {
   //   <h3>{rec.nutrition.nutrients[0].amount}</h3>
   // </div>
 
-  return (
-    <div>
-      {data.results.map((rec) => (
-        <ProductCard
-          key={rec.id}
-          title={rec.title}
-          nutrition={rec.nutrition.nutrients[0].amount}
-        />
-      ))}
-    </div>
-  );
+  console.log(data);
+  return data.results.map((rec) => (
+    <ProductCard
+      key={rec.id}
+      title={rec.title}
+      nutrition={rec.nutrition.nutrients}
+      summary={rec.summary}
+      imgUrl={rec.image}
+    />
+  ));
 }

@@ -10,16 +10,54 @@ const Card = styled.div`
   align-items: center;
   width: 100%;
   max-width: 18rem;
-  height: 20rem;
+  height: 16rem;
   border: 1px solid black;
   cursor: pointer;
   z-index: 1;
-  transition: all 1s;
+  transition: 0.5s;
+
+  &:hover {
+    height: 20rem;
+
+    .title {
+      visibility: visible;
+      transition: visibility 05s;
+    }
+
+    .recepie-image {
+      top: -5rem;
+      scale: 0.8;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+    }
+  }
+`;
+
+const TitleStyle = styled.h3`
+  visibility: hidden;
+  font-size: calc(0.8rem + 0.8vw);
+  text-align: center;
+  padding: 0.5rem;
+  z-index: 1;
+  transition: 0.3s;
+`;
+
+const ImgStyle = styled.img`
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 1rem;
+  z-index: 0;
+  transition: 0.5s;
+`;
+
+const SummaryStyle = styled.p`
+  font-size: 1rem;
 `;
 
 const ModalDiv = styled.div`
   // Temp styling TODO: Add more styling
-  display: ${(props) => (props.modalStatus === "true" ? "block" : "none")};
+  display: ${(props) => (props.modalstatus === "true" ? "block" : "none")};
   position: fixed;
   top: 50%;
   left: 50%;
@@ -35,7 +73,7 @@ const ModalDiv = styled.div`
 `;
 const ModalBg = styled.div`
   // Temp styling TODO: Add more styling
-  display: ${(props) => (props.modalStatus === "true" ? "block" : "none")};
+  display: ${(props) => (props.modalstatus === "true" ? "block" : "none")};
   position: fixed;
   top: 0;
   left: 0;
@@ -43,9 +81,9 @@ const ModalBg = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: ${(props) =>
-    props.modalStatus === "true" ? "rgba(0, 0, 0, 0.5)" : "transparent"};
+    props.modalstatus === "true" ? "rgba(0, 0, 0, 0.5)" : "transparent"};
   backdrop-filter: ${(props) =>
-    props.modalStatus === "true" ? "blur(5px)" : "none"};
+    props.modalstatus === "true" ? "blur(5px)" : "none"};
   transition: all 1s;
 `;
 
@@ -66,15 +104,29 @@ export const ProductCard = (props) => {
   // All prop variables
   const title = props.title;
   const nutrition = props.nutrition;
+  // console.log(nutrition);
+  const neutrients = nutrition
+    .map((nutrient) => `${nutrient.name}: ${nutrient.amount + nutrient.unit}`)
+    .join(", ");
+  const summary = props.summary;
+  const imgUrl = props.imgUrl;
 
   return (
     <>
-      <Card className="Product Card" onClick={openModal}>
-        <h3>{title}</h3>
+      <Card className="card-container" onClick={openModal}>
+        <ImgStyle className="recepie-image" src={imgUrl} alt="" />
+        <TitleStyle className="title" imgurl={imgUrl}>
+          {title}
+        </TitleStyle>
       </Card>
 
-      <ModalDiv className={ModalDiv} modalStatus={modalStatus.toString()}>
-        <p>{nutrition}</p>
+      <ModalDiv className={ModalDiv} modalstatus={modalStatus.toString()}>
+        {/*(Tiger): This is probably a terrible idea and I am open to suggestions */}
+        <SummaryStyle
+          dangerouslySetInnerHTML={{ __html: summary }}
+          className="text-xs"
+        />
+        <p>{neutrients}</p>
         <button onClick={closeModal}>Close</button>
       </ModalDiv>
 
