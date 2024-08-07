@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 
 const Card = styled.div`
+  //  This is the recepie card container
   display: flex;
   position: relative;
   flex-direction: column;
@@ -15,15 +16,17 @@ const Card = styled.div`
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
   z-index: 1;
   transition: 0.5s;
-    
-    .title {
-        background: rgba(0, 0, 0, 0.15);
-        border-radius: 5px;
-        backdrop-filter: blur(3px);
-        -webkit-backdrop-filter: blur(5px);
-    }
+
+  .title {
+    // Dish title
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(5px);
+  }
 
   .recepie-image {
+    // Image of the dish
     object-fit: cover;
     position: absolute;
     width: 100%;
@@ -57,12 +60,13 @@ const Card = styled.div`
   }
 
   &:hover {
+    // All hover effects on the card
     height: 20rem;
 
     .title {
       color: black;
-        background: none;
-        transition: 0.3s;
+      background: none;
+      transition: 0.3s;
     }
 
     .recepie-image {
@@ -71,17 +75,9 @@ const Card = styled.div`
       scale: 0.8;
       border-radius: 0.5rem;
       box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
-      -webkit-filter: blur(0);
-      -moz-filter: blur(0);
-      -o-filter: blur(0);
-      -ms-filter: blur(0);
     }
 
     .img-container {
-      -webkit-filter: blur(0);
-      -moz-filter: blur(0);
-      -o-filter: blur(0);
-      -ms-filter: blur(0);
     }
   }
 `;
@@ -96,9 +92,9 @@ const TitleStyle = styled.h3`
 `;
 
 const ModalDiv = styled.div`
-  // Temp styling TODO: Add more styling
+  // Container div for all recipe details
   display: ${(props) => (props.modalstatus === "true" ? "block" : "none")};
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -106,16 +102,26 @@ const ModalDiv = styled.div`
   height: 100%;
   max-width: 40rem;
   max-height: 50rem;
+  padding: 3rem;
   background-color: white;
+  border-radius: 10px;
   z-index: 1000;
-  border: 1px solid black;
   transition: all 1s;
+  overflow: scroll;
+
+  .close-modal-button {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+  }
 
   .insturctions-list > li {
     list-style-type: none;
   }
 `;
+
 const ModalBg = styled.div`
+  // This is the background of the modal that darkens + blur the background
   display: ${(props) => (props.modalstatus === "true" ? "block" : "none")};
   position: fixed;
   top: 0;
@@ -127,7 +133,6 @@ const ModalBg = styled.div`
     props.modalstatus === "true" ? "rgba(0, 0, 0, 0.5)" : "transparent"};
   backdrop-filter: ${(props) =>
     props.modalstatus === "true" ? "blur(5px)" : "none"};
-  transition: all 1s;
 `;
 
 const SummaryStyle = styled.p`
@@ -150,10 +155,10 @@ export const ProductCard = (props) => {
 
   // All prop variables
   const title = props.title;
-  const nutrition = props.nutrition;
+  let nutrients = props.nutrients;
   // console.log(nutrition);
-  const neutrients = nutrition
-    .map((nutrient) => `${nutrient.name}: ${nutrient.amount + nutrient.unit}`)
+  nutrients = nutrients
+    .map((nutrient) => `${nutrient.name} ${nutrient.amount + nutrient.unit}`)
     .join(", ");
   const summary = props.summary;
   const imgUrl = props.imgUrl;
@@ -161,7 +166,13 @@ export const ProductCard = (props) => {
   const cuisines = props.cuisines || [];
   const diets = props.diets || [];
   const instructions = props.instructions || [];
-
+  let ingredients = props.ingredients || [];
+  ingredients = ingredients
+    .map(
+      (ingredient) =>
+        `${ingredient.name} ${ingredient.amount} ${ingredient.unit}`,
+    )
+    .join(", ");
   return (
     <>
       <Card className="card-container">
@@ -197,7 +208,8 @@ export const ProductCard = (props) => {
           dangerouslySetInnerHTML={{ __html: summary }}
           className="text-xs"
         />
-        <p>{neutrients}</p>
+        <p>{ingredients}</p>
+        <p>{nutrients}</p>
 
         <ol className="insturctions-list">
           {instructions.map((step) => (
@@ -206,7 +218,9 @@ export const ProductCard = (props) => {
             </li>
           ))}
         </ol>
-        <button onClick={closeModal}>Close</button>
+        <button className="close-modal-button" onClick={closeModal}>
+          Close
+        </button>
       </ModalDiv>
 
       <ModalBg className="ModalBg" modalstatus={modalStatus.toString()} />
