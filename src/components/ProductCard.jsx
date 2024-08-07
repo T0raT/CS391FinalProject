@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import {DarkThemeContext} from "./DarkThemeContextProvider.jsx";
 
 const Card = styled.div`
   //  This is the recepie card container
@@ -64,9 +65,9 @@ const Card = styled.div`
     height: 20rem;
 
     .title {
-      color: black;
-      background: none;
-      transition: 0.3s;
+      color: ${(props) => (props.theme.dark ? "white" : "black")};
+        background: none;
+        transition: 0.3s;
     }
 
     .recepie-image {
@@ -102,8 +103,8 @@ const ModalDiv = styled.div`
   height: 100%;
   max-width: 40rem;
   max-height: 50rem;
+  background-color: ${(props) => (!props.theme.dark ? "white" : "#1c2029")};
   padding: 3rem;
-  background-color: white;
   border-radius: 10px;
   z-index: 1000;
   transition: all 1s;
@@ -173,12 +174,15 @@ export const ProductCard = (props) => {
         `${ingredient.name} ${ingredient.amount} ${ingredient.unit}`,
     )
     .join(", ");
+
+  const darkContext = useContext(DarkThemeContext); // added by Arien
+
   return (
     <>
-      <Card className="card-container">
+      <Card className="card-container" theme={darkContext}>
         <img className="recepie-image" src={imgUrl} alt="No Image" />
 
-        <TitleStyle className="title" imgurl={imgUrl}>
+        <TitleStyle className="title" imgurl={imgUrl} theme={darkContext}>
           {title}
         </TitleStyle>
         <p>Ready in: {readyInMinutes} minutes</p>
@@ -202,7 +206,7 @@ export const ProductCard = (props) => {
         </p>
       </Card>
 
-      <ModalDiv className={ModalDiv} modalstatus={modalStatus.toString()}>
+      <ModalDiv className={ModalDiv} modalstatus={modalStatus.toString()} theme={darkContext}>
         {/*(Tiger): This is probably a terrible idea and I am open to suggestions */}
         <SummaryStyle
           dangerouslySetInnerHTML={{ __html: summary }}
