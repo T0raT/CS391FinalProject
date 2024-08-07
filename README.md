@@ -2,11 +2,11 @@
 [Official documentation](https://vitejs.dev/guide/env-and-mode)
 
 Create a `.env.local` file.
-   - In Vite, using `.env.local` automatically lets git ignore it unlike just `.env`
-   - Then add a variable for your api key `VITE_API_KEY=insert api key here`
+   - In Vite, using `.env.local` automatically ensures git ignores it unlike using `.env`
+   - Add a variable for your api key `VITE_API_KEY=insert api key here` in `.env.local`
 
 ```jsx
-/ * the VITE_ prefix is needed for vite to be able to expose the api key in client */
+/ * the VITE_ prefix is necessary for vite to to expose the api key in client */
 
 // Example api keys in .env.local
 VITE_API_KEY=09ej03918g0287h
