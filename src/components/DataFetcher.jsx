@@ -31,6 +31,7 @@ export default function DataFetcher({ query }) {
       readyInMinutes={rec?.readyInMinutes}
       cuisines={rec?.cuisines}
       diets={rec?.diets}
+      instructions={rec.analyzedInstructions[0].steps}
     />
   ));
 }

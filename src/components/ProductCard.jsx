@@ -106,6 +106,10 @@ const ModalDiv = styled.div`
   z-index: 1000;
   border: 1px solid black;
   transition: all 1s;
+
+  .insturctions-list > li {
+    list-style-type: none;
+  }
 `;
 const ModalBg = styled.div`
   // Temp styling TODO: Add more styling
@@ -153,6 +157,7 @@ export const ProductCard = (props) => {
   const readyInMinutes = props.readyInMinutes || "";
   const cuisines = props.cuisines || [];
   const diets = props.diets || [];
+  const instructions = props.instructions || [];
 
   return (
     <>
@@ -190,6 +195,14 @@ export const ProductCard = (props) => {
           className="text-xs"
         />
         <p>{neutrients}</p>
+
+        <ol className="insturctions-list">
+          {instructions.map((step) => (
+            <li key={step.number}>
+              Step {step.number}: {step.step}
+            </li>
+          ))}
+        </ol>
         <button onClick={closeModal}>Close</button>
       </ModalDiv>
 
