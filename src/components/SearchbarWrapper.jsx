@@ -109,6 +109,14 @@ const Label = styled.label`
   font-size: calc(10px + 1vmin);
 `;
 
+const Select = styled.select`
+  width: 100%;
+  padding: 0.2rem;
+  border-radius: 5px;
+  border: 1px solid #020202;
+  font-size: calc(10px + 1vmin);
+`;
+
 const Input = styled.input`
   width: 100%;
   padding: 0.2rem;
@@ -166,26 +174,40 @@ export default function SearchbarWrapper() {
 
             <CriteriaItem>
               <Label htmlFor="DietType">Diet Type</Label>
-              <Input
-                type="string"
-                id="DietType"
-                name="DietType"
-                placeholder="e.g Vegetarian"
-                value={dietType}
-                onChange={(e) => setDietType(e.target.value)}
-              />
+              <Select name="DietType" id="DietType" value={dietType} onChange={(e) => setDietType(e.target.value)}>
+                <option value="">Click to See Options</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Ketogenic">Ketogenic</option>
+                <option value="Lacto-Vegetarian">Lacto Vegetarian</option>
+                <option value="Ovo-Vegetarian">Ovo-Vegetarian</option>
+                <option value="Vegan">Vegan</option>
+                <option value="Pescetarian">Pescetarian</option>
+                <option value="Paleo">Paleo</option>
+                <option value="Primal">Primal</option>
+                <option value="Whole30">Whole30</option>
+              </Select>
+
             </CriteriaItem>
 
             <CriteriaItem>
               <Label htmlFor="mealType">Meal Type</Label>
-              <Input
-                type="text"
-                id="mealType"
-                name="mealType"
-                placeholder="e.g., Dinner"
-                value={mealType}
-                onChange={(e) => setMealType(e.target.value)}
-              />
+              <Select id="mealType" name="mealType" value={mealType} onChange={(e) => setMealType(e.target.value)}>
+                <option value="">Click to See Options</option>
+                <option value="main+course">main course</option>
+                <option value="side+dish">side dish</option>
+                <option value="dessert">dessert</option>
+                <option value="appetizer">appetizer</option>
+                <option value="salad">salad</option>
+                <option value="bread">bread</option>
+                <option value="breakfast">breakfast</option>
+                <option value="soup">soup</option>
+                <option value="beverage">beverage</option>
+                <option value="sauce">sauce</option>
+                <option value="marinade">marinade</option>
+                <option value="fingerfood">fingerfood</option>
+                <option value="snack">snack</option>
+                <option value="drink">alcoholic drink</option>
+              </Select>
             </CriteriaItem>
           </CriteriaContainer>
 

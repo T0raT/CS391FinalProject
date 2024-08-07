@@ -15,6 +15,13 @@ const Card = styled.div`
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
   z-index: 1;
   transition: 0.5s;
+    
+    .title {
+        background: rgba(0, 0, 0, 0.15);
+        border-radius: 5px;
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(5px);
+    }
 
   .recepie-image {
     object-fit: cover;
@@ -25,11 +32,7 @@ const Card = styled.div`
     z-index: 1;
     transition: 0.5s;
     border-radius: 1rem;
-    -webkit-filter: blur(3px);
-    -moz-filter: blur(3px);
-    -o-filter: blur(3px);
-    -ms-filter: blur(3px);
-    filter: blur(3px);
+
     background-color: white;
   }
 
@@ -58,7 +61,8 @@ const Card = styled.div`
 
     .title {
       color: black;
-      transition: 1s;
+        background: none;
+        transition: 0.3s;
     }
 
     .recepie-image {
@@ -101,7 +105,7 @@ const ModalDiv = styled.div`
   width: 100%;
   height: 100%;
   max-width: 40rem;
-  max-height: 40rem;
+  max-height: 50rem;
   background-color: white;
   z-index: 1000;
   border: 1px solid black;
@@ -112,7 +116,6 @@ const ModalDiv = styled.div`
   }
 `;
 const ModalBg = styled.div`
-  // Temp styling TODO: Add more styling
   display: ${(props) => (props.modalstatus === "true" ? "block" : "none")};
   position: fixed;
   top: 0;
