@@ -25,13 +25,14 @@ export default function DataFetcher({ query }) {
     <ProductCard
       key={rec.id}
       title={rec.title}
-      nutrition={rec?.nutrition?.nutrients}
+      nutrients={rec?.nutrition?.nutrients}
       summary={rec?.summary}
       imgUrl={rec?.image}
       readyInMinutes={rec?.readyInMinutes}
       cuisines={rec?.cuisines}
       diets={rec?.diets}
       instructions={rec.analyzedInstructions[0].steps}
+      ingredients ={rec?.nutrition?.ingredients}
     />
   ));
 }
