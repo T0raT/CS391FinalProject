@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 
 const Card = styled.div`
+  //  This is the recepie card container
   display: flex;
   position: relative;
   flex-direction: column;
@@ -17,6 +18,7 @@ const Card = styled.div`
   transition: 0.5s;
 
   .title {
+    // Dish title
     background: rgba(0, 0, 0, 0.15);
     border-radius: 5px;
     backdrop-filter: blur(3px);
@@ -24,6 +26,7 @@ const Card = styled.div`
   }
 
   .recepie-image {
+    // Image of the dish
     object-fit: cover;
     position: absolute;
     width: 100%;
@@ -57,6 +60,7 @@ const Card = styled.div`
   }
 
   &:hover {
+    // All hover effects on the card
     height: 20rem;
 
     .title {
@@ -88,9 +92,9 @@ const TitleStyle = styled.h3`
 `;
 
 const ModalDiv = styled.div`
-  // Temp styling TODO: Add more styling
+  // Container div for all recipe details
   display: ${(props) => (props.modalstatus === "true" ? "block" : "none")};
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -106,7 +110,7 @@ const ModalDiv = styled.div`
   overflow: scroll;
 
   .close-modal-button {
-    position: absolute;
+    position: fixed;
     top: 0.5rem;
     left: 0.5rem;
   }
@@ -117,6 +121,7 @@ const ModalDiv = styled.div`
 `;
 
 const ModalBg = styled.div`
+  // This is the background of the modal that darkens + blur the background
   display: ${(props) => (props.modalstatus === "true" ? "block" : "none")};
   position: fixed;
   top: 0;
@@ -128,7 +133,6 @@ const ModalBg = styled.div`
     props.modalstatus === "true" ? "rgba(0, 0, 0, 0.5)" : "transparent"};
   backdrop-filter: ${(props) =>
     props.modalstatus === "true" ? "blur(5px)" : "none"};
-  transition: all 1s;
 `;
 
 const SummaryStyle = styled.p`
