@@ -75,9 +75,7 @@ const Card = styled.div`
       scale: 0.8;
       border-radius: 0.5rem;
       box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
-    }
-
-    .img-container {
+      transition: 0.5s;
     }
   }
 `;
@@ -184,14 +182,20 @@ export const ProductCard = (props) => {
         <p>Ready in: {readyInMinutes} minutes</p>
         <div className="cuisines-container">
           {cuisines.map((item) => (
-            <span className="cuisine-tag" key={props.key}>
+            <span
+              className="cuisine-tag"
+              key={props.id + Math.floor(Math.random() * 999)}
+            >
               {item}
             </span>
           ))}
         </div>
         <div className="diets-container">
           {diets.map((item) => (
-            <span className="diet-tag" key={props.key}>
+            <span
+              className="diet-tag"
+              key={props.id + Math.floor(Math.random() * 999)}
+            >
               {item}
             </span>
           ))}
