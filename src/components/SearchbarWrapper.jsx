@@ -18,6 +18,8 @@ const FlexMain = styled.main`
   gap: 2rem;
   height: auto;
   width: 100%;
+  margin-top: 5rem;
+  font-family: futura-pt-condensed, sans-serif;
 `;
 
 // to style the layout of the input field and buttons

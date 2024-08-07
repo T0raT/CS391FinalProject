@@ -2,57 +2,93 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 
 const Card = styled.div`
-  // Temp styling TODO: Add more styling
   display: flex;
   position: relative;
   flex-direction: column;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   width: 100%;
   max-width: 18rem;
   height: 16rem;
-  border: 1px solid black;
-  cursor: pointer;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
   z-index: 1;
   transition: 0.5s;
+
+  .recepie-image {
+    object-fit: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 1;
+    transition: 0.5s;
+    border-radius: 1rem;
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+    background-color: white;
+  }
+
+  .cuisines-container,
+  .diets-container {
+    text-align: center;
+  }
+
+  .cuisine-tag,
+  .diet-tag {
+    margin: 0.5rem 0 0 0.3rem;
+    display: inline-block;
+    padding: 0 0.4rem 0 0.4rem;
+    border: solid 1px black;
+    border-radius: 5px;
+  }
+
+  .read-more {
+    align-self: start;
+    margin-top: 0.8rem;
+    cursor: pointer;
+  }
 
   &:hover {
     height: 20rem;
 
     .title {
-      visibility: visible;
-      transition: visibility 05s;
+      color: black;
+      transition: 1s;
     }
 
     .recepie-image {
-      top: -5rem;
+      top: -8rem;
+      height: 70%;
       scale: 0.8;
+      border-radius: 0.5rem;
       box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+      -webkit-filter: blur(0);
+      -moz-filter: blur(0);
+      -o-filter: blur(0);
+      -ms-filter: blur(0);
+    }
+
+    .img-container {
+      -webkit-filter: blur(0);
+      -moz-filter: blur(0);
+      -o-filter: blur(0);
+      -ms-filter: blur(0);
     }
   }
 `;
 
 const TitleStyle = styled.h3`
-  visibility: hidden;
-  font-size: calc(0.8rem + 0.8vw);
+  font-size: calc(0.7rem + 0.7vw);
   text-align: center;
   padding: 0.5rem;
   z-index: 1;
+  color: white;
   transition: 0.3s;
-`;
-
-const ImgStyle = styled.img`
-  object-fit: cover;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 1rem;
-  z-index: 0;
-  transition: 0.5s;
-`;
-
-const SummaryStyle = styled.p`
-  font-size: 1rem;
 `;
 
 const ModalDiv = styled.div`
@@ -87,6 +123,10 @@ const ModalBg = styled.div`
   transition: all 1s;
 `;
 
+const SummaryStyle = styled.p`
+  font-size: 1rem;
+`;
+
 export const ProductCard = (props) => {
   const [modalStatus, setModalStatus] = useState(false);
 
@@ -110,14 +150,37 @@ export const ProductCard = (props) => {
     .join(", ");
   const summary = props.summary;
   const imgUrl = props.imgUrl;
+  const readyInMinutes = props.readyInMinutes || "";
+  const cuisines = props.cuisines || [];
+  const diets = props.diets || [];
 
   return (
     <>
-      <Card className="card-container" onClick={openModal}>
-        <ImgStyle className="recepie-image" src={imgUrl} alt="" />
+      <Card className="card-container">
+        <img className="recepie-image" src={imgUrl} alt="No Image" />
+
         <TitleStyle className="title" imgurl={imgUrl}>
           {title}
         </TitleStyle>
+        <p>Ready in: {readyInMinutes} minutes</p>
+        <div className="cuisines-container">
+          {cuisines.map((item) => (
+            <span className="cuisine-tag" key={props.key}>
+              {item}
+            </span>
+          ))}
+        </div>
+        <div className="diets-container">
+          {diets.map((item) => (
+            <span className="diet-tag" key={props.key}>
+              {item}
+            </span>
+          ))}
+        </div>
+
+        <p className="read-more" onClick={openModal}>
+          Read Recipe &#x21c0;
+        </p>
       </Card>
 
       <ModalDiv className={ModalDiv} modalstatus={modalStatus.toString()}>

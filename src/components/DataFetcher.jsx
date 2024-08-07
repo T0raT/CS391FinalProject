@@ -12,7 +12,7 @@ export default function DataFetcher({ query }) {
   if (!data) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  // (Tiger) Thank you carlos for the sample input
+  // (Tiger): Thank you carlos for the sample input
   // <div key={rec.id}>
   //   <h3>{rec.title}</h3>
   //   <h3>{rec.readyInMinutes}</h3>
@@ -25,9 +25,12 @@ export default function DataFetcher({ query }) {
     <ProductCard
       key={rec.id}
       title={rec.title}
-      nutrition={rec.nutrition.nutrients}
-      summary={rec.summary}
-      imgUrl={rec.image}
+      nutrition={rec?.nutrition?.nutrients}
+      summary={rec?.summary}
+      imgUrl={rec?.image}
+      readyInMinutes={rec?.readyInMinutes}
+      cuisines={rec?.cuisines}
+      diets={rec?.diets}
     />
   ));
 }
