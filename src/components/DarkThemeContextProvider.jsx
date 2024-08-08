@@ -7,23 +7,27 @@ import styled from "styled-components";
 export const DarkThemeContext = createContext();
 
 const Button = styled.button`
-  max-width: 10em;
-  padding: 2%;
+  max-width: 15em;
+  padding: 1%;
   border-radius: 20px;
-  border: 2px solid ${(props) => (props.dark ? "rgb(0, 146, 66)" : "black")};
+  border: 2px solid ${(props) => (props.dark ? "white" : "black")};
   cursor: pointer;
   font-size: calc(5px + 1vmin);
+  background-color: ${(props) => (props.dark ? "#8b8f99": "#ebebeb")};
+  transition: 0.3s;
 `;
 
 const HeaderContainer = styled.div`
   background-color: ${(props) => (props.dark ? "#1c2029" : "white")};
   color: ${(props) => (props.dark ? "white" : "#1c2029")};
   padding: 1% 2%;
-  text-align: center;
+  transition: 0.5s;
 `;
 
 const StyledHeader = styled.header`
-  font-size: calc(1.5vw + 1.5vh);
+  font-size: calc(2vw + 2vh);
+  font-family: futura-pt-condensed, sans-serif;
+  text-align: center;
 `;
 
 export default function DarkThemeContextProvider({ children }) {

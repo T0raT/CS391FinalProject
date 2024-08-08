@@ -9,7 +9,8 @@ const StyledTheme = styled.div`
     background-color: ${(props) => (!props.theme.dark ? "white" : "#1c2029")};
     color: ${(props) => (!props.theme.dark ?  "black" : "white")};
     padding: 2%;
-    height: 100%;
+    min-height: 100vh;
+    transition: 0.5s;
 `;
 
 export default function ThemeComponent(){
