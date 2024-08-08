@@ -107,6 +107,9 @@ const ModalDiv = styled.div`
   z-index: 1000;
   transition: all 1s;
   overflow: scroll;
+  a{
+   color: rgb(0, 146, 66);; 
+  }
 
   .close-modal-button {
     position: fixed;
@@ -175,6 +178,7 @@ export const ProductCard = (props) => {
 
   const darkContext = useContext(DarkThemeContext); // added by Arien
 
+  // Arien: theme={dark} context added to specific parts of the cards that change color
   return (
     <>
       <Card className="card-container" theme={darkContext}>
