@@ -1,7 +1,11 @@
-import SearchbarWrapper from "./components/SearchbarWrapper.jsx";
-import styled from "styled-components";
-import { ProductCard } from "./components/ProductCard.jsx";
+import ThemeComponent from "./components/ThemeComponent.jsx";
+import DarkThemeContextProvider from "./components/DarkThemeContextProvider.jsx";
 
 export default function App() {
-  return <SearchbarWrapper />;
+  return (
+      <DarkThemeContextProvider>
+        <ThemeComponent/>
+      </DarkThemeContextProvider>
+      //<SearchbarWrapper/>
+  );
 }

@@ -5,11 +5,12 @@
 
 // All work Here was done by Carlos Contreras
 
-import { useState } from "react";
+import {useContext, useState} from "react";
 import styled from "styled-components";
 import DataFetcher from "./DataFetcher.jsx";
 import QueryBuilder from "./QueryBuilder.jsx";
 import { ProductCard } from "./ProductCard.jsx";
+import {DarkThemeContext} from "./DarkThemeContextProvider.jsx";
 
 const FlexMain = styled.main`
   display: flex;
@@ -24,11 +25,11 @@ const FlexMain = styled.main`
 
 // to style the layout of the input field and buttons
 const MainContainer = styled.div`
-  //background: rgb(0, 146, 66);
-  background: linear-gradient(to bottom, #1e9324, #049f0a);
-  box-shadow: 0 4px 8px rgba(0, 145, 65, 0.41);
+  background: rgb(0, 146, 66);
 
-  border: 2px solid #050505;
+  // border props context added by Arien
+  border: 2px solid ${(props) => (props.theme.dark ? "white" : "#1c2029")};
+  
   padding: 1em;
   margin-bottom: 1em;
   max-width: 100vw;
@@ -90,24 +91,26 @@ const Searchbar = styled.input`
   width: 90%;
   padding: 1rem;
   border-radius: 20px;
-  border: 2px solid #020202;
+  border: 2px solid ${(props) => (props.theme.dark ? "white": "#020202")};
   font-size: calc(1vw + 1vh);
   font-style: italic;
   color: black;
+  background-color: ${(props) => (props.theme.dark ? "#b7bdc9": "#ebebeb")};
+  transition: 0.3s;
 `;
 const Button = styled.button`
   max-width: 10em;
   padding: 1rem;
   border-radius: 20px;
-  border: 2px solid #020202;
+  border: 2px solid ${(props) => (props.theme.dark ? "white": "#020202")};
   cursor: pointer;
   font-size: calc(5px + 1vmin);
-  font-style: bold;
+  background-color: ${(props) => (props.theme.dark ? "#b7bdc9": "#ebebeb")};
+  transition: 0.3s;  
 `;
 
 const Label = styled.label`
   color: white;
-  font-weight: bold;
   margin-bottom: 0.5rem;
   font-size: calc(10px + 1vmin);
 `;
@@ -116,16 +119,19 @@ const Select = styled.select`
   width: 100%;
   padding: 0.2rem;
   border-radius: 5px;
-  border: 2px solid #020202;
+  border: 1px solid ${(props) => (props.theme.dark ? "white": "#020202")};
   font-size: calc(10px + 1vmin);
+  background-color: ${(props) => (props.theme.dark ? "#b7bdc9": "#ebebeb")};
 `;
 
 const Input = styled.input`
   width: 100%;
   padding: 0.2rem;
   border-radius: 5px;
-  border: 2px solid #020202;
+  border: 1px solid ${(props) => (props.theme.dark ? "white": "#020202")};
   font-size: calc(10px + 1vmin);
+  background-color: ${(props) => (props.theme.dark ? "#b7bdc9": "#ebebeb")}
+
 `;
 
 export default function SearchbarWrapper() {
@@ -149,16 +155,22 @@ export default function SearchbarWrapper() {
     setQuery(APIcallstring);
   };
 
+  // darkContext added by Arien
+  // the purpose of this is to connect it to the switching themes so that we can
+  // use it for the other styled components
+  const darkContext = useContext(DarkThemeContext);
+
   return (
     <>
       <header>
-        <MainContainer>
+        <MainContainer theme={darkContext}>
           <SearchContainer>
             <Searchbar
               type="search"
               placeholder="What would you like to cook today?"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
+              theme={darkContext}
             />
           </SearchContainer>
 
@@ -172,12 +184,13 @@ export default function SearchbarWrapper() {
                 placeholder="optional number e.g. 300"
                 value={maxCalories}
                 onChange={(e) => setMaxCalories(e.target.value)}
+                theme={darkContext}
               />
             </CriteriaItem>
 
             <CriteriaItem>
               <Label htmlFor="DietType">Diet Type</Label>
-              <Select name="DietType" id="DietType" value={dietType} onChange={(e) => setDietType(e.target.value)}>
+              <Select name="DietType" id="DietType" value={dietType} theme={darkContext} onChange={(e) => setDietType(e.target.value)}>
                 <option value="">Click to See Options</option>
                 <option value="Vegetarian">Vegetarian</option>
                 <option value="Ketogenic">Ketogenic</option>
@@ -194,7 +207,7 @@ export default function SearchbarWrapper() {
 
             <CriteriaItem>
               <Label htmlFor="mealType">Meal Type</Label>
-              <Select id="mealType" name="mealType" value={mealType} onChange={(e) => setMealType(e.target.value)}>
+              <Select id="mealType" name="mealType" value={mealType} theme={darkContext} onChange={(e) => setMealType(e.target.value)}>
                 <option value="">Click to See Options</option>
                 <option value="main+course">main course</option>
                 <option value="side+dish">side dish</option>
@@ -215,8 +228,8 @@ export default function SearchbarWrapper() {
           </CriteriaContainer>
 
           <ButtonContainer>
-            <Button>Switch Theme </Button>
-            <Button onClick={Search}>Search</Button>
+            {/*<Button>Switch Theme </Button>*/}
+            <Button onClick={Search} theme={darkContext}>Search</Button>
           </ButtonContainer>
         </MainContainer>
       </header>
