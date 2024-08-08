@@ -6,6 +6,5 @@ export default function App() {
       <DarkThemeContextProvider>
         <ThemeComponent/>
       </DarkThemeContextProvider>
-      //<SearchbarWrapper/>
   );
 }
