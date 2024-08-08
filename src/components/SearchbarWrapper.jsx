@@ -3,13 +3,14 @@
 
 // potential form fields for additional criteria could be : maxCalories, type of meal, diet types, a sorting button
 
-// All work Here was done by Carlos Contreras
+// All work here done by Carlos Contreras with collaboration from Arien to set the darkmode theme on
+// different elements
 
 import {useContext, useState} from "react";
 import styled from "styled-components";
 import DataFetcher from "./DataFetcher.jsx";
 import QueryBuilder from "./QueryBuilder.jsx";
-import { ProductCard } from "./ProductCard.jsx";
+
 import {DarkThemeContext} from "./DarkThemeContextProvider.jsx";
 
 const FlexMain = styled.main`
