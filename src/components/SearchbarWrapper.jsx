@@ -87,6 +87,7 @@ const ButtonContainer = styled.div`
 
 // to style the elements inside the containers, these are the input fields and buttons themselves.
 
+// Arien: border and background color change using props and context for specific elements
 const Searchbar = styled.input`
   width: 90%;
   padding: 1rem;
@@ -98,6 +99,7 @@ const Searchbar = styled.input`
   background-color: ${(props) => (props.theme.dark ? "#b7bdc9": "#ebebeb")};
   transition: 0.3s;
 `;
+
 const Button = styled.button`
   max-width: 10em;
   padding: 1rem;

@@ -65,6 +65,7 @@ const Card = styled.div`
     height: 20rem;
 
     .title {
+      // Arien: used the context to change the title color based on the theme
       color: ${(props) => (props.theme.dark ? "white" : "black")};
         background: none;
         transition: 0.3s;
@@ -101,6 +102,7 @@ const ModalDiv = styled.div`
   height: 100%;
   max-width: 40rem;
   max-height: 50rem;
+  // Arien: used the context to change the title color based on the theme
   background-color: ${(props) => (!props.theme.dark ? "white" : "#1c2029")};
   padding: 3rem;
   border-radius: 10px;

@@ -6,6 +6,10 @@ import styled from "styled-components";
 
 export const DarkThemeContext = createContext();
 
+// made styled components to add to the page
+// the colors in here depend on the dark boolean in the function itself
+// and not the theme from the props
+
 const Button = styled.button`
   max-width: 15em;
   padding: 1%;
@@ -31,10 +35,21 @@ const StyledHeader = styled.header`
 `;
 
 export default function DarkThemeContextProvider({ children }) {
+  // the useState hook is how the useContext hook will know if the theme needs to be changed
+  // the initial state is light mode
   const [dark, setDark] = useState(false);
+
+  // changeTheme function is called on by the button, so that whenever the button is pressed
+  // the setDark function will change the state of the dark boolean value
   function changeTheme() {
     setDark(!dark);
   }
+
+  // in here, we not only envelope the {children} with the DarkThemeContext, we also
+  // add in the header and the title, which isn't necessary and could be added from another
+  // component, but it worked out being added here.
+  // it also includes the button that changes the theme.
+  // the changeTheme function is also passed in as a value along with the dark boolean
   return (
     <>
       <DarkThemeContext.Provider value={{ dark, changeTheme }}>
