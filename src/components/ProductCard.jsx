@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import {useContext, useState} from "react";
 import {DarkThemeContext} from "./DarkThemeContextProvider.jsx";
 
 const Card = styled.div`
