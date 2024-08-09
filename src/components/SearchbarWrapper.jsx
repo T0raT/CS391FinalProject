@@ -3,13 +3,14 @@
 
 // potential form fields for additional criteria could be : maxCalories, type of meal, diet types, a sorting button
 
-// All work Here was done by Carlos Contreras
+// All work here done by Carlos Contreras with collaboration from Arien to set the darkmode theme on
+// different elements
 
 import {useContext, useState} from "react";
 import styled from "styled-components";
 import DataFetcher from "./DataFetcher.jsx";
 import QueryBuilder from "./QueryBuilder.jsx";
-import { ProductCard } from "./ProductCard.jsx";
+
 import {DarkThemeContext} from "./DarkThemeContextProvider.jsx";
 
 const FlexMain = styled.main`
@@ -87,6 +88,7 @@ const ButtonContainer = styled.div`
 
 // to style the elements inside the containers, these are the input fields and buttons themselves.
 
+// Arien: border and background color change using props and context for specific elements
 const Searchbar = styled.input`
   width: 90%;
   padding: 1rem;
@@ -98,6 +100,7 @@ const Searchbar = styled.input`
   background-color: ${(props) => (props.theme.dark ? "#b7bdc9": "#ebebeb")};
   transition: 0.3s;
 `;
+
 const Button = styled.button`
   max-width: 10em;
   padding: 1rem;

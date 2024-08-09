@@ -4,6 +4,9 @@
 // Section to Store the different parts needed to make Spoonacular API calls that don't change with each request.
 // for now these values are hardcoded but realistically should be hidden with sensitive info shared publicly.
 
+// This component was made by Carlos Contreras. ccontrer@bu.edu.
+// Tiger collaborated by adding a better implementation to mask API key.
+
 export default function QueryBuilder({
   searchValue,
   maxCalories,

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext, useEffect, useState } from "react";
+import {useContext, useState} from "react";
 import { DarkThemeContext } from "./DarkThemeContextProvider.jsx";
 
 /*
@@ -42,6 +42,7 @@ const Card = styled.div`
     z-index: 1;
     transition: 0.5s;
     border-radius: 1rem;
+
     background-color: white;
   }
 
@@ -71,6 +72,7 @@ const Card = styled.div`
     height: 20rem;
 
     .title {
+      // Arien: used the context to change the title color based on the theme
       color: ${(props) => (props.theme.dark ? "white" : "black")};
       background: none;
       transition: 0.3s;
@@ -107,12 +109,16 @@ const ModalDiv = styled.div`
   height: 100%;
   max-width: 40rem;
   max-height: 50rem;
+  // Arien: used the context to change the title color based on the theme
   background-color: ${(props) => (!props.theme.dark ? "white" : "#1c2029")};
   padding: 3rem;
   border-radius: 10px;
   z-index: 1000;
   transition: all 0.5s;
   overflow: scroll;
+  a{
+   color: rgb(0, 146, 66);; 
+  }
 
   @media screen and (max-width: 790px) {
     max-width: 80%;
@@ -193,6 +199,7 @@ export const ProductCard = (props) => {
     setModalStatus(true);
     console.log("Modal opened");
   };
+
   const closeModal = () => {
     setModalStatus(false);
     console.log("Modal closed");
@@ -260,7 +267,6 @@ export const ProductCard = (props) => {
         theme={darkContext}
       >
         {/*(Tiger): This is probably a terrible idea and I am open to suggestions */}
-        <h1>{title}</h1>
         <SummaryStyle
           dangerouslySetInnerHTML={{ __html: summary }}
           className="text-xs"

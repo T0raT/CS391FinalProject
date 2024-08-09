@@ -1,6 +1,9 @@
 // function used to fetch and display the relevant data needed for each recipe.
 // info i want to retireve for each plate are calories, serving, preptime, image, name, ingredients
 
+// Data Fetching process done by Carlos Contreras
+// result formatting for future styling done by Tiger
+
 import useSWR from "swr";
 import { ProductCard } from "./ProductCard.jsx";
 
