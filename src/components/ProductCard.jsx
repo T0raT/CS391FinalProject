@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
-import {DarkThemeContext} from "./DarkThemeContextProvider.jsx";
+import { useContext, useEffect, useState } from "react";
+import { DarkThemeContext } from "./DarkThemeContextProvider.jsx";
 
 const Card = styled.div`
   //  This is the recepie card container
@@ -50,7 +50,7 @@ const Card = styled.div`
     margin: 0.5rem 0 0 0.3rem;
     display: inline-block;
     padding: 0 0.4rem 0 0.4rem;
-    border: solid 1px black;
+    border: ${(props) => (!props.theme.dark ? "#1c2029" : "white")} solid 1px;
     border-radius: 5px;
   }
 
@@ -66,8 +66,8 @@ const Card = styled.div`
 
     .title {
       color: ${(props) => (props.theme.dark ? "white" : "black")};
-        background: none;
-        transition: 0.3s;
+      background: none;
+      transition: 0.3s;
     }
 
     .recepie-image {
@@ -93,7 +93,7 @@ const TitleStyle = styled.h3`
 const ModalDiv = styled.div`
   // Container div for all recipe details
   display: ${(props) => (props.modalstatus === "true" ? "block" : "none")};
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -105,18 +105,59 @@ const ModalDiv = styled.div`
   padding: 3rem;
   border-radius: 10px;
   z-index: 1000;
-  transition: all 1s;
+  transition: all 0.5s;
   overflow: scroll;
 
+  @media screen and (max-width: 790px) {
+    max-width: 80%;
+    max-height: 38rem;
+  }
+
   .close-modal-button {
-    position: fixed;
+    position: absolute;
     top: 0.5rem;
     left: 0.5rem;
+    height: 2rem;
+    width: 2rem;
+    opacity: 0.3;
+    transition: 0.1s;
+    cursor: pointer;
+    &:before,
+    &:after {
+      position: absolute;
+      left: 1rem;
+      height: 2rem;
+      width: 2px;
+      background-color: ${(props) => (!props.theme.dark ? "#1c2029" : "white")};
+      content: "";
+    }
+    &:before {
+      transform: rotate(45deg);
+    }
+    &:after {
+      transform: rotate(-45deg);
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .ingredients {
+    font-size: 1.1rem;
+  }
+
+  .nutrients {
+    font-size: 0.9rem;
   }
 
   .insturctions-list > li {
     list-style-type: none;
+    font-size: 1.1rem;
   }
+`;
+
+const SummaryStyle = styled.p`
+  font-size: 1.1rem;
 `;
 
 const ModalBg = styled.div`
@@ -132,10 +173,6 @@ const ModalBg = styled.div`
     props.modalstatus === "true" ? "rgba(0, 0, 0, 0.5)" : "transparent"};
   backdrop-filter: ${(props) =>
     props.modalstatus === "true" ? "blur(5px)" : "none"};
-`;
-
-const SummaryStyle = styled.p`
-  font-size: 1rem;
 `;
 
 export const ProductCard = (props) => {
@@ -169,7 +206,7 @@ export const ProductCard = (props) => {
   ingredients = ingredients
     .map(
       (ingredient) =>
-        `${ingredient.name} ${ingredient.amount} ${ingredient.unit}`,
+        ` ${ingredient.amount} ${ingredient.unit} ${ingredient.name} `,
     )
     .join(", ");
 
@@ -210,25 +247,36 @@ export const ProductCard = (props) => {
         </p>
       </Card>
 
-      <ModalDiv className={ModalDiv} modalstatus={modalStatus.toString()} theme={darkContext}>
+      <ModalDiv
+        className={ModalDiv}
+        modalstatus={modalStatus.toString()}
+        theme={darkContext}
+      >
         {/*(Tiger): This is probably a terrible idea and I am open to suggestions */}
+        <h1>{title}</h1>
         <SummaryStyle
           dangerouslySetInnerHTML={{ __html: summary }}
           className="text-xs"
         />
-        <p>{ingredients}</p>
-        <p>{nutrients}</p>
 
+        <br />
+        <h2>Ingredients</h2>
+        <p className="ingredients">{ingredients}</p>
+
+        <br />
+        <p className="nutrients">{nutrients}</p>
+
+        <br />
+        <h2>Instructions</h2>
         <ol className="insturctions-list">
           {instructions.map((step) => (
             <li key={step.number}>
-              Step {step.number}: {step.step}
+              <span style={{ color: "red" }}>Step {step.number}</span> :{" "}
+              {step.step}
             </li>
           ))}
         </ol>
-        <button className="close-modal-button" onClick={closeModal}>
-          Close
-        </button>
+        <a className="close-modal-button" onClick={closeModal} />
       </ModalDiv>
 
       <ModalBg className="ModalBg" modalstatus={modalStatus.toString()} />
