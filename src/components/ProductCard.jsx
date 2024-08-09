@@ -1,11 +1,21 @@
+/*
+ * Product card component by Daian Liu (Tiger)
+ * Display a card with following recipe details:
+ * Recipe title,
+ *        image,
+ *        cuisines,
+ *        diets,
+ *        summary,
+ *        nutrients,
+ *        instructions,
+ *        ingredients
+ *
+ * Dark theme props added by Arien.
+ * */
+
 import styled from "styled-components";
 import { useContext, useState } from "react";
 import { DarkThemeContext } from "./DarkThemeContextProvider.jsx";
-
-/*
- *
- * Product card component by Daian Liu (Tiger)
- * */
 
 const Card = styled.div`
   //  This is the recepie card container
