@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {useContext, useState} from "react";
+import { useContext, useState } from "react";
 import { DarkThemeContext } from "./DarkThemeContextProvider.jsx";
 
 /*
@@ -53,6 +53,7 @@ const Card = styled.div`
 
   .cuisine-tag,
   .diet-tag {
+    // All tags for cuisines and diets
     margin: 0.5rem 0 0 0.3rem;
     display: inline-block;
     padding: 0 0.4rem 0 0.4rem;
@@ -61,6 +62,7 @@ const Card = styled.div`
   }
 
   .read-more {
+    // Originally a button now just to indicate the card is clickable
     align-self: start;
     margin-top: 0.8rem;
     cursor: pointer;
@@ -116,8 +118,8 @@ const ModalDiv = styled.div`
   z-index: 1000;
   transition: all 0.5s;
   overflow: scroll;
-  a{
-   color: rgb(0, 146, 66);; 
+  a {
+    color: rgb(0, 146, 66);
   }
 
   @media screen and (max-width: 790px) {
