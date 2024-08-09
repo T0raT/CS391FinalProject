@@ -2,6 +2,11 @@ import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import { DarkThemeContext } from "./DarkThemeContextProvider.jsx";
 
+/*
+ *
+ * Product card component by Daian Liu (Tiger)
+ * */
+
 const Card = styled.div`
   //  This is the recepie card container
   display: flex;
@@ -17,6 +22,7 @@ const Card = styled.div`
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
   z-index: 1;
   transition: 0.5s;
+  cursor: pointer;
 
   .title {
     // Dish title
@@ -36,7 +42,6 @@ const Card = styled.div`
     z-index: 1;
     transition: 0.5s;
     border-radius: 1rem;
-
     background-color: white;
   }
 
@@ -60,7 +65,8 @@ const Card = styled.div`
     cursor: pointer;
   }
 
-  &:hover {
+  &:hover,
+  &:active {
     // All hover effects on the card
     height: 20rem;
 
@@ -111,6 +117,7 @@ const ModalDiv = styled.div`
   @media screen and (max-width: 790px) {
     max-width: 80%;
     max-height: 38rem;
+    padding: 1.5rem;
   }
 
   .close-modal-button {
@@ -179,11 +186,13 @@ export const ProductCard = (props) => {
   const [modalStatus, setModalStatus] = useState(false);
 
   const openModal = () => {
-    // Separating the to openModal and closeModal to offer more control.
+    /*
+     * Modal functions sets modalStatus to true or false
+     * modalStatus is passed to ModalDiv and ModalBg for conditional rendering.
+     * */
     setModalStatus(true);
     console.log("Modal opened");
   };
-
   const closeModal = () => {
     setModalStatus(false);
     console.log("Modal closed");
@@ -193,7 +202,7 @@ export const ProductCard = (props) => {
   const title = props.title;
   let nutrients = props.nutrients;
   // console.log(nutrition);
-  nutrients = nutrients
+  nutrients = nutrients // Clean up nutrients data for better formatting.
     .map((nutrient) => `${nutrient.name} ${nutrient.amount + nutrient.unit}`)
     .join(", ");
   const summary = props.summary;
@@ -214,7 +223,7 @@ export const ProductCard = (props) => {
 
   return (
     <>
-      <Card className="card-container" theme={darkContext}>
+      <Card className="card-container" theme={darkContext} onClick={openModal}>
         <img className="recepie-image" src={imgUrl} alt="No Image" />
 
         <TitleStyle className="title" imgurl={imgUrl} theme={darkContext}>
@@ -242,9 +251,7 @@ export const ProductCard = (props) => {
           ))}
         </div>
 
-        <p className="read-more" onClick={openModal}>
-          Read Recipe &#x21c0;
-        </p>
+        <p className="read-more">Click to read recipe!</p>
       </Card>
 
       <ModalDiv
